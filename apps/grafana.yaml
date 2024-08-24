@@ -9,7 +9,8 @@ spec:
     repoURL: https://github.com/farru1998/gitops.git
     path: charts/grafana
     helm:
-      values: manifest/grafana/values.yaml
+      valueFiles:
+        - manifest/grafana/values.yaml
   destination:
     server: https://kubernetes.default.svc  # Kubernetes API server URL
     namespace: monitoring  # Target namespace for Grafana deployment
