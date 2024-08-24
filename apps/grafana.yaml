@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: monitoring  # Change this to your ArgoCD namespace if different
+spec:
+  project: observability
+  source:
+    repoURL: https://github.com/farru1998/gitops.git
+    path: charts/grafana
+    helm:
+      values: 
+
+  destination:
+    server: https://kubernetes.default.svc  # Kubernetes API server URL
+    namespace: monitoring  # Target namespace for Grafana deployment
+
+  syncPolicy:
+    automated:
+      prune: true  # Automatically delete resources that are no longer in the Git repository
+      selfHeal: true  # Automatically apply changes made to the Git repository
+    syncOptions:
+    - CreateNamespace=true  # Automatically create the target namespace if it doesn't exist
