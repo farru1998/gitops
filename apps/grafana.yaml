@@ -4,7 +4,7 @@ metadata:
   name: grafana
   namespace: monitoring  # Change this to your ArgoCD namespace if different
 spec:
-  project: observability
+  project: monitoring
   source:
     repoURL: https://github.com/farru1998/gitops.git
     path: charts/grafana
