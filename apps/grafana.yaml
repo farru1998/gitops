@@ -10,7 +10,7 @@ spec:
     path: charts/grafana
     helm:
       valueFiles:
-        - manifest/grafana/values.yaml
+        - /manifest/grafana/values.yaml
   destination:
     server: https://kubernetes.default.svc  # Kubernetes API server URL
     namespace: monitoring  # Target namespace for Grafana deployment
