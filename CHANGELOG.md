@@ -1,12 +1,5 @@
-- chnages
-- chnages
-- chnages
-- chnages
-- chnages
-- chnages
-- chnages
-- chnages
-- chnages
-- chnages
-- Added grafana chart
-- Initial commit
+# Changelog
+
+## v0.0.4
+
+- Revert Readme
