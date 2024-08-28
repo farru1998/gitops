@@ -2,7 +2,7 @@
 
 # Fetch the latest two tags
 latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
-previous_tag=$(git describe --tags `git rev-list --tags --max-count=2 | tail -n 1`)
+#previous_tag=$(git describe --tags `git rev-list --tags --max-count=2 | tail -n 1`)
 
 if [ -z "$latest_tag" ]; then
     echo "Error: Could not find sufficient tags to generate a changelog."
@@ -22,11 +22,11 @@ fi
 temp_file=$(mktemp)
 
 # Add the latest tag section to the temporary file
-echo "## [$latest_tag] - $(date +%Y-%m-%d)" >> $temp_file
+echo "## [$1] - $(date +%Y-%m-%d)" >> $temp_file
 echo "" >> $temp_file
 
 # Use git log to get commit messages between the latest tag and the previous tag
-git log $previous_tag..$latest_tag --pretty=format:"- %s" >> $temp_file
+git log $latest_tag..HEAD --pretty=format:"- %s" >> $temp_file
 
 # Create a new changelog file with the header and the new entries at the top
 {
@@ -42,4 +42,4 @@ mv $changelog_file.tmp $changelog_file
 # Clean up the temporary file
 rm $temp_file
 
-echo "Changelog for $latest_tag generated successfully in $changelog_file."
+echo "Changelog for $1 generated successfully in $changelog_file."
